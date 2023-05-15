@@ -18,24 +18,21 @@ class UpdatePage extends Request implements HasBody
 
     /**
      * Define the HTTP method
-     *
-     * @var Method
      */
     protected Method $method = Method::PATCH;
 
     /**
      * Define the endpoint for the request
-     *
-     * @return string
      */
     public function resolveEndpoint(): string
     {
-        return '/pages/' . $this->page->id;
+        return '/pages/'.$this->page->id;
     }
 
     public function __construct(
         protected NotionPageObject $page,
-    ) {}
+    ) {
+    }
 
     protected function defaultBody(): array
     {

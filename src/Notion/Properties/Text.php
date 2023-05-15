@@ -26,7 +26,7 @@ class Text extends Property
                 'text' => [
                     'content' => $this->value,
                 ],
-            ]
+            ],
         ];
     }
 }

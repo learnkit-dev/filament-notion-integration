@@ -4,7 +4,6 @@ namespace LearnKit\FilamentNotion;
 
 use Filament\Context;
 use Filament\Facades\Filament;
-use Filament\Forms\Components\Component;
 use Filament\Support\Assets\AlpineComponent;
 use Filament\Support\Assets\Asset;
 use Filament\Support\Assets\AssetManager;
@@ -15,12 +14,12 @@ use Filament\Support\Facades\FilamentIcon;
 use Filament\Support\Icons\Icon;
 use Filament\Support\Icons\IconManager;
 use Illuminate\Filesystem\Filesystem;
+use LearnKit\FilamentNotion\Commands\FilamentNotionCommand;
+use LearnKit\FilamentNotion\Testing\TestsFilamentNotion;
 use Livewire\Testing\TestableLivewire;
 use Spatie\LaravelPackageTools\Commands\InstallCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use LearnKit\FilamentNotion\Commands\FilamentNotionCommand;
-use LearnKit\FilamentNotion\Testing\TestsFilamentNotion;
 
 class FilamentNotionServiceProvider extends PackageServiceProvider
 {

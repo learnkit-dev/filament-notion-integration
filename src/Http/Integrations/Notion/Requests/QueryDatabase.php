@@ -19,13 +19,14 @@ class QueryDatabase extends Request implements HasBody
 
     public function resolveEndpoint(): string
     {
-        return '/databases/' . $this->databaseId . '/query';
+        return '/databases/'.$this->databaseId.'/query';
     }
 
     public function __construct(
         public string $databaseId,
         public array $filters = [],
-    ) {}
+    ) {
+    }
 
     protected function defaultBody(): array
     {
@@ -41,7 +42,7 @@ class QueryDatabase extends Request implements HasBody
     public function addFilter(string $property, string $propertyType, string $filterType, mixed $value): static
     {
         $this->filters[] = [
-            "property" => $property,
+            'property' => $property,
             $propertyType => [
                 $filterType => $value,
             ],
