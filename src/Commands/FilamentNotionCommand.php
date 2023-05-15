@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace LearnKit\FilamentNotion\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class FilamentNotionCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'filament-notion-integration';
 
     public $description = 'My command';
 

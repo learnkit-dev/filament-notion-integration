@@ -1,9 +1,10 @@
 <?php
 
-namespace VendorName\Skeleton;
+namespace LearnKit\FilamentNotion;
 
 use Filament\Context;
 use Filament\Facades\Filament;
+use Filament\Forms\Components\Component;
 use Filament\Support\Assets\AlpineComponent;
 use Filament\Support\Assets\Asset;
 use Filament\Support\Assets\AssetManager;
@@ -18,14 +19,14 @@ use Livewire\Testing\TestableLivewire;
 use Spatie\LaravelPackageTools\Commands\InstallCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use VendorName\Skeleton\Commands\SkeletonCommand;
-use VendorName\Skeleton\Testing\TestsSkeleton;
+use LearnKit\FilamentNotion\Commands\FilamentNotionCommand;
+use LearnKit\FilamentNotion\Testing\TestsFilamentNotion;
 
-class SkeletonServiceProvider extends PackageServiceProvider
+class FilamentNotionServiceProvider extends PackageServiceProvider
 {
-    public static string $name = 'skeleton';
+    public static string $name = 'filament-notion-integration';
 
-    public static string $viewNamespace = 'skeleton';
+    public static string $viewNamespace = 'filament-notion';
 
     public function configurePackage(Package $package): void
     {
@@ -36,7 +37,7 @@ class SkeletonServiceProvider extends PackageServiceProvider
                     ->publishConfigFile()
                     ->publishMigrations()
                     ->askToRunMigrations()
-                    ->askToStarRepoOnGitHub(':vendor_slug/:package_slug');
+                    ->askToStarRepoOnGitHub('learnkit-dev/filament-notion-integration');
             });
 
         $configFileName = $package->shortName();
@@ -61,12 +62,12 @@ class SkeletonServiceProvider extends PackageServiceProvider
     public function packageRegistered(): void
     {
         //        Facade Registration
-        $this->app->bind('skeleton', function (): Skeleton {
-            return new Skeleton();
+        $this->app->bind('filament-notion-integration', function (): FilamentNotion {
+            return new FilamentNotion();
         });
 
         //        Context Registration
-        $this->app->resolving('skeleton', function () {
+        $this->app->resolving('filament-notion-integration', function () {
             foreach ($this->getContexts() as $context) {
                 Filament::registerContext($context);
             }
@@ -92,13 +93,13 @@ class SkeletonServiceProvider extends PackageServiceProvider
         if ($this->app->runningInConsole()) {
             foreach (app(Filesystem::class)->files(__DIR__.'/../stubs/') as $file) {
                 $this->publishes([
-                    $file->getRealPath() => base_path("stubs/skeleton/{$file->getFilename()}"),
+                    $file->getRealPath() => base_path("stubs/filament-notion-integration/{$file->getFilename()}"),
                 ], 'forms-stubs');
             }
         }
 
         //        Testing
-        TestableLivewire::mixin(new TestsSkeleton());
+        TestableLivewire::mixin(new TestsFilamentNotion());
     }
 
     protected function getAssetPackage(): ?string
@@ -112,9 +113,9 @@ class SkeletonServiceProvider extends PackageServiceProvider
     protected function getAssets(): array
     {
         return [
-            //  AlpineComponent::make('skeleton', __DIR__ . '/../resources/dist/components/skeleton.js'),
-            Css::make('skeleton-styles', __DIR__.'/../resources/dist/skeleton.js'),
-            Js::make('skeleton-scripts', __DIR__.'/../resources/dist/skeleton.js'),
+            //  AlpineComponent::make('filament-notion-integration', __DIR__ . '/../resources/dist/components/filament-notion-integration.js'),
+            //Css::make('filament-notion-integration-styles', __DIR__.'/../resources/dist/filament-notion-integration.js'),
+            //Js::make('filament-notion-integration-scripts', __DIR__.'/../resources/dist/filament-notion-integration.js'),
         ];
     }
 
@@ -124,7 +125,7 @@ class SkeletonServiceProvider extends PackageServiceProvider
     protected function getCommands(): array
     {
         return [
-            SkeletonCommand::class,
+            FilamentNotionCommand::class,
         ];
     }
 
@@ -166,7 +167,7 @@ class SkeletonServiceProvider extends PackageServiceProvider
     protected function getMigrations(): array
     {
         return [
-            'create_skeleton_table',
+            'create_filament-notion-integration_table',
         ];
     }
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace VendorName\Skeleton\Database\Factories;
+namespace LearnKit\FilamentNotion\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 

@@ -1,31 +1,32 @@
 {
-    "name": ":vendor_slug/:package_slug",
-    "description": ":package_description",
+    "name": "learnkit-dev/filament-notion-integration",
+    "description": "",
     "keywords": [
-        ":vendor_name",
+        "learnkit-dev",
         "laravel",
-        ":package_slug"
+        "filament-notion-integration"
     ],
-    "homepage": "https://github.com/:vendor_slug/:package_slug",
+    "homepage": "https://github.com/learnkit-dev/filament-notion-integration",
     "support": {
-        "issues": "https://github.com/:vendor_slug/:package_slug/issues",
-        "source": "https://github.com/:vendor_slug/:package_slug"
+        "issues": "https://github.com/learnkit-dev/filament-notion-integration/issues",
+        "source": "https://github.com/learnkit-dev/filament-notion-integration"
     },
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
+            "name": "Sebastiaan Kloos",
+            "email": "sebastiaan@learnkit.dev",
             "role": "Developer"
         }
     ],
     "require": {
         "php": "^8.0",
         "filament/filament": "^3.0",
-        "filament/forms": "^3.0",
-        "filament/tables": "^3.0",
         "spatie/laravel-package-tools": "^1.13.5",
-        "illuminate/contracts": "^9.0|^10.0"
+        "illuminate/contracts": "^9.0|^10.0",
+        "guzzlehttp/guzzle": "^7.2",
+        "sammyjo20/saloon": "^2.5",
+        "sammyjo20/saloon-laravel": "^2.0"
     },
     "require-dev": {
         "laravel/pint": "^1.0",
@@ -44,13 +45,13 @@
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src",
-            "VendorName\\Skeleton\\Database\\Factories\\": "database/factories"
+            "LearnKit\\FilamentNotion\\": "src",
+            "LearnKit\\FilamentNotion\\Database\\Factories\\": "database/factories"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests"
+            "LearnKit\\FilamentNotion\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -73,10 +74,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "VendorName\\Skeleton\\SkeletonServiceProvider"
+                "LearnKit\\FilamentNotion\\FilamentNotionServiceProvider"
             ],
             "aliases": {
-                "Skeleton": "VendorName\\Skeleton\\Facades\\Skeleton"
+                "FilamentNotion": "LearnKit\\FilamentNotion\\Facades\\FilamentNotion"
             }
         }
     },
