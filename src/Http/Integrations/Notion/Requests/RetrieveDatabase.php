@@ -17,10 +17,11 @@ class RetrieveDatabase extends Request
 
     public function resolveEndpoint(): string
     {
-        return '/databases/' . $this->databaseId;
+        return '/databases/'.$this->databaseId;
     }
 
     public function __construct(
         public string $databaseId
-    ) {}
+    ) {
+    }
 }

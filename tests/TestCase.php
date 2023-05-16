@@ -4,9 +4,9 @@ namespace LearnKit\FilamentNotion\Tests;
 
 use Filament\FilamentServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use LearnKit\FilamentNotion\FilamentNotionServiceProvider;
 use Livewire\LivewireServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
-use LearnKit\FilamentNotion\FilamentNotionServiceProvider;
 
 class TestCase extends Orchestra
 {

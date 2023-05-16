@@ -26,7 +26,8 @@ class CreatePage extends Request implements HasBody
     public function __construct(
         public string $databaseId,
         public NotionPageObject $page,
-    ) {}
+    ) {
+    }
 
     protected function defaultBody(): array
     {

@@ -60,13 +60,13 @@ class Property
                 static::$type => [
                     'content' => $this->value,
                 ],
-            ]
+            ],
         ];
     }
 
     public static function make(string $name, string $type, mixed $value)
     {
-        return match($type) {
+        return match ($type) {
             'title' => new Title($name, $value),
             'date' => new Date($name, $value),
             'checkbox' => new Checkbox($name, $value),
