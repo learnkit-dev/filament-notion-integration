@@ -11,51 +11,35 @@ trait InteractsWithNotion
 {
     protected static ?string $notionDatabaseId = null;
 
-    public function submitToNotion(): void
+    public function submitToNotion()
     {
         $data = $this->form->getState();
 
-        //
-        $object = new NotionPageObject(
-            title: 'Hello world!'
+        $pageObject = $this->getNotionPageObject(
+            data: $data
         );
 
-        // Get schema from the Notion database
-        $request = new RetrieveDatabase(
-            databaseId: $this->getNotionDatabaseId()
-        );
-
-        $response = $request->send()->json();
-
-        $properties = $response['properties'];
-
-        foreach ($this->getFormSchema() as $component) {
-            if (! isset($properties[$component->getName()])) {
-                continue;
-            }
-
-            $property = $response['properties'][$component->getName()];
-
-            $object->setProperty($property['name'], $property['type'], $data[$property['name']]);
-        }
-
-        // Create a new Notion page in the database
         $request = new CreatePage(
             databaseId: $this->getNotionDatabaseId(),
-            page: $object
+            page: $pageObject
         );
 
         $response = $request->send()->json();
 
-        ray($response);
+        return $this->afterFormSubmittedToNotion();
     }
 
     public function submitToNotionAction(): Action
     {
         return Action::make('submit_to_notion_action')
-            ->label('Submit')
+            ->label(static::getSubmitToNotionActionLabel())
             ->action('submitToNotion')
             ->color('green');
+    }
+
+    public static function getSubmitToNotionActionLabel(): string
+    {
+        return 'Submit';
     }
 
     public function notionDatabaseId(?string $databaseId): static
@@ -68,5 +52,39 @@ trait InteractsWithNotion
     public function getNotionDatabaseId(): ?string
     {
         return static::$notionDatabaseId;
+    }
+
+    protected function getNotionDatabaseProperties(): array
+    {
+        $request = new RetrieveDatabase(
+            databaseId: $this->getNotionDatabaseId()
+        );
+
+        $response = $request->send()->json();
+
+        return $response['properties'] ?? [];
+    }
+
+    protected function getNotionPageObject(array $data): NotionPageObject
+    {
+        $properties = $this->getNotionDatabaseProperties();
+
+        $object = NotionPageObject::make();
+
+        foreach ($this->getFormSchema() as $component) {
+            if (! isset($properties[$component->getName()])) {
+                continue;
+            }
+
+            $property = $properties[$component->getName()];
+
+            $object->setProperty($property['name'], $property['type'], $data[$property['name']]);
+        }
+
+        return $object;
+    }
+
+    public function afterFormSubmittedToNotion()
+    {
     }
 }
