@@ -25,7 +25,8 @@ class CreateComment extends Request implements HasBody
     public function __construct(
         public string $pageId,
         public array $objects,
-    ) {}
+    ) {
+    }
 
     protected function defaultBody(): array
     {

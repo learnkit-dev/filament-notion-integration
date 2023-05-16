@@ -22,5 +22,6 @@ class RetrieveDatabase extends Request
 
     public function __construct(
         public string $databaseId
-    ) {}
+    ) {
+    }
 }

@@ -10,7 +10,8 @@ class RichTextObject
         public bool $bold = false,
         public bool $italic = false,
         public bool $underline = false,
-    ) {}
+    ) {
+    }
 
     public function toArray(): array
     {

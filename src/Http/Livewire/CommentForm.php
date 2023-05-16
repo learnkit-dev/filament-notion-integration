@@ -44,7 +44,7 @@ class CommentForm extends Component implements HasForms, HasActions
         $objects = [
             (new RichTextObject(
                 content: $data['comment'],
-            ))->toArray()
+            ))->toArray(),
         ];
 
         $request = new CreateComment(
