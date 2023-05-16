@@ -2,6 +2,8 @@
 
 namespace LearnKit\FilamentNotion;
 
+use LearnKit\FilamentNotion\Http\Livewire\CommentForm;
+use Livewire\Livewire;
 use Spatie\LaravelPackageTools\Commands\InstallCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
@@ -30,5 +32,10 @@ class FilamentNotionServiceProvider extends PackageServiceProvider
         if (file_exists($this->package->basePath('/../resources/views'))) {
             $package->hasViews(static::$viewNamespace);
         }
+    }
+
+    public function packageBooted()
+    {
+        Livewire::component('notion-comment-form', CommentForm::class);
     }
 }
