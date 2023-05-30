@@ -54,7 +54,7 @@ class CommentForm extends Component implements HasForms, HasActions
 
         $response = $request->send()->json();
 
-        ray($response);
+        $this->form->fill(null);
     }
 
     public function render()

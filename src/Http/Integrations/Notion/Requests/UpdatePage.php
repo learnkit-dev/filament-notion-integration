@@ -36,8 +36,6 @@ class UpdatePage extends Request implements HasBody
 
     protected function defaultBody(): array
     {
-        ray($this->page->toNotionFormat());
-
         return $this->page->toNotionFormat();
     }
 }

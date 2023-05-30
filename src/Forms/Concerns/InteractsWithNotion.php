@@ -3,7 +3,7 @@
 namespace LearnKit\FilamentNotion\Forms\Concerns;
 
 use Filament\Actions\Action;
-use LearnKit\FilamentNotion\Http\Integrations\Notion\Requests\CreatePage;
+use LearnKit\FilamentNotion\Forms\Notion;
 use LearnKit\FilamentNotion\Http\Integrations\Notion\Requests\RetrieveDatabase;
 use LearnKit\FilamentNotion\Http\Objects\NotionPageObject;
 
@@ -11,22 +11,21 @@ trait InteractsWithNotion
 {
     protected static ?string $notionDatabaseId = null;
 
+    public function mount()
+    {
+        $this->form->fill([]);
+    }
+
     public function submitToNotion()
     {
         $data = $this->form->getState();
 
-        $pageObject = $this->getNotionPageObject(
-            data: $data
-        );
+        $notion = $this
+            ->getNotion(new Notion())
+            ->getNotionPageObject($data)
+            ->createPage();
 
-        $request = new CreatePage(
-            databaseId: $this->getNotionDatabaseId(),
-            page: $pageObject
-        );
-
-        $response = $request->send()->json();
-
-        return $this->afterFormSubmittedToNotion();
+        return $this->afterFormSubmittedToNotion($notion);
     }
 
     public function submitToNotionAction(): Action
@@ -84,7 +83,17 @@ trait InteractsWithNotion
         return $object;
     }
 
-    public function afterFormSubmittedToNotion()
+    public function getNotion(Notion $notion): Notion
+    {
+        return $notion;
+    }
+
+    public function getDefaultNotionProperties(): array
+    {
+        return [];
+    }
+
+    public function afterFormSubmittedToNotion(Notion $notion)
     {
     }
 }

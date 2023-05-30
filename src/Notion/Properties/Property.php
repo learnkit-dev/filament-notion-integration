@@ -71,6 +71,7 @@ class Property
             'date' => new Date($name, $value),
             'checkbox' => new Checkbox($name, $value),
             'multi_select' => new Multiselect($name, $value),
+            'people' => new People($name, $value),
             default => new Text($name, $value),
         };
     }
