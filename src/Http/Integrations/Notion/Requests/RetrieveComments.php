@@ -17,10 +17,11 @@ class RetrieveComments extends Request
 
     public function resolveEndpoint(): string
     {
-        return '/comments?block_id=' . $this->blockId;
+        return '/comments?block_id='.$this->blockId;
     }
 
     public function __construct(
         public string $blockId
-    ) {}
+    ) {
+    }
 }
